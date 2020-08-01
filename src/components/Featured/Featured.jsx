@@ -8,15 +8,14 @@ export const Featured = () => {
 
 	useEffect(() => {
 		(async () => {
-			const url = `http://demo3136867.mockable.io/featured`;
+			const url = "https://national-parks-reactjs.herokuapp.com/db";
 			const data = await fetch(url);
 			const json = await data.json();
 
-			setFeatures(json);
+			setFeatures(json.featured);
 		})();
 	}, [setFeatures]);
 
-	const { data } = features;
 	return (
 		<>
 			<Title>Featured</Title>
@@ -25,8 +24,8 @@ export const Featured = () => {
 					? filtered.map((feature, index) => (
 							<FeaturedItem key={index} {...feature} />
 					  ))
-					: data &&
-					  data.map((feature, index) => (
+					: features &&
+					  features.map((feature, index) => (
 							<FeaturedItem key={index} {...feature} />
 					  ))}
 			</ContainerFeatures>

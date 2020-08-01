@@ -5,43 +5,21 @@ import "slick-carousel/slick/slick-theme.css";
 import { Title, Container } from "./styles";
 import { PopularsItem } from "../PopularsItem/PopularsItem";
 import { FeaturedContext } from "../FeaturedContext/FeaturedContext";
+import { SampleNextArrow, SamplePrevArrow } from "../../utils/utils";
 
 export const PopularAroundYou = () => {
 	const { populars, setPopulars } = useContext(FeaturedContext);
 
 	useEffect(() => {
 		(async () => {
-			const url = "http://demo3136867.mockable.io/carousel";
+			const url = "https://national-parks-reactjs.herokuapp.com/db";
 			const data = await fetch(url);
 			const json = await data.json();
 
-			setPopulars(json);
+			setPopulars(json.carousel);
 		})();
 	}, [setPopulars]);
 
-	const { data } = populars;
-
-	function SampleNextArrow(props) {
-		const { className, style, onClick } = props;
-		return (
-			<div
-				className={className}
-				style={{ ...style, display: "block", background: "#8CC1ED" }}
-				onClick={onClick}
-			/>
-		);
-	}
-
-	function SamplePrevArrow(props) {
-		const { className, style, onClick } = props;
-		return (
-			<div
-				className={className}
-				style={{ ...style, display: "block", background: "#8CC1ED" }}
-				onClick={onClick}
-			/>
-		);
-	}
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -58,8 +36,8 @@ export const PopularAroundYou = () => {
 			<Title>Popular around you</Title>
 			<Container>
 				<Slider {...settings}>
-					{data &&
-						data.map((popular, index) => (
+					{populars &&
+						populars.map((popular, index) => (
 							<PopularsItem key={index} {...popular} />
 						))}
 				</Slider>
