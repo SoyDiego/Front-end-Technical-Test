@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { FeaturedItem } from "../FeaturedItem/FeaturedItem";
 import { Title, ContainerFeatures } from "./styles";
+import { FeaturedContext } from "../FeaturedContext/FeaturedContext";
 
 export const Featured = () => {
-	const [features, setFeatures] = useState([]);
+	const { features, setFeatures, filtered } = useContext(FeaturedContext);
+
 	useEffect(() => {
 		(async () => {
 			const url = `http://demo3136867.mockable.io/featured`;
@@ -12,14 +14,21 @@ export const Featured = () => {
 
 			setFeatures(json);
 		})();
-	}, []);
+	}, [setFeatures]);
 
 	const { data } = features;
 	return (
 		<>
 			<Title>Featured</Title>
 			<ContainerFeatures>
-				{data && data.map((feature) => <FeaturedItem {...feature} />)}
+				{filtered.length > 0
+					? filtered.map((feature, index) => (
+							<FeaturedItem key={index} {...feature} />
+					  ))
+					: data &&
+					  data.map((feature, index) => (
+							<FeaturedItem key={index} {...feature} />
+					  ))}
 			</ContainerFeatures>
 		</>
 	);

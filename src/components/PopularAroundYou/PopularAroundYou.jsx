@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Title, Container } from "./styles";
 import { PopularsItem } from "../PopularsItem/PopularsItem";
+import { FeaturedContext } from "../FeaturedContext/FeaturedContext";
 
 export const PopularAroundYou = () => {
-	const [populars, setPopulars] = useState([]);
+	const { populars, setPopulars } = useContext(FeaturedContext);
 
 	useEffect(() => {
 		(async () => {
@@ -16,7 +17,7 @@ export const PopularAroundYou = () => {
 
 			setPopulars(json);
 		})();
-	}, []);
+	}, [setPopulars]);
 
 	const { data } = populars;
 
@@ -58,7 +59,9 @@ export const PopularAroundYou = () => {
 			<Container>
 				<Slider {...settings}>
 					{data &&
-						data.map((popular) => <PopularsItem {...popular} />)}
+						data.map((popular, index) => (
+							<PopularsItem key={index} {...popular} />
+						))}
 				</Slider>
 			</Container>
 		</>
