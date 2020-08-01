@@ -8,4 +8,8 @@ export const Input = styled.input`
 		border: 2px solid #99caef;
 		border-radius: 5px;
 	}
+
+	@media (max-width: 480px) {
+		width: 100%;
+	}
 `;
