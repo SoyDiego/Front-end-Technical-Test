@@ -11,7 +11,6 @@ export const Search = () => {
 			RegExp(e.target.value, "gi").test(feature.title)
 		);
 		setFiltered(filteredFeature);
-		console.log(filteredFeature);
 	};
 
 	return (
