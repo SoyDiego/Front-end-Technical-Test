@@ -4,11 +4,10 @@ import { FeaturedContext } from "../FeaturedContext/FeaturedContext";
 
 export const Search = () => {
 	const { features, setFiltered } = useContext(FeaturedContext);
-	const { data } = features;
 
 	let filteredFeature;
 	const handleChange = (e) => {
-		filteredFeature = data.filter((feature) =>
+		filteredFeature = features.filter((feature) =>
 			RegExp(e.target.value, "gi").test(feature.title)
 		);
 		setFiltered(filteredFeature);
