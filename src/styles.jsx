@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "styled-components";
 
 export const Container = styled.section`
 	margin: 0 auto;
@@ -11,7 +11,6 @@ export const Container = styled.section`
 
 export const Wrapper = styled.div`
 	margin: 1rem 0;
-	height: 90vh;
 	width: 95%;
 	background-color: white;
 	padding: 1rem;

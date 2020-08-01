@@ -15,7 +15,6 @@ export const Featured = () => {
 	}, []);
 
 	const { data } = features;
-	console.log(data);
 	return (
 		<>
 			<Title>Featured</Title>
