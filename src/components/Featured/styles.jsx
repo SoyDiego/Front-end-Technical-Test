@@ -7,4 +7,7 @@ export const Title = styled.h2`
 export const ContainerFeatures = styled.div`
 	display: flex;
 	width: 100%;
+	@media (min-width: 320px) {
+		flex-wrap: wrap;
+	}
 `;
