@@ -7,13 +7,17 @@ export const Featured = () => {
 	const { features, setFeatures, filtered } = useContext(FeaturedContext);
 
 	useEffect(() => {
-		(async () => {
-			const url = "https://national-parks-reactjs.herokuapp.com/db";
-			const data = await fetch(url);
-			const json = await data.json();
+		try {
+			(async () => {
+				const url = "https://national-parks-reactjs.herokuapp.com/db";
+				const data = await fetch(url);
+				const json = await data.json();
 
-			setFeatures(json.featured);
-		})();
+				setFeatures(json.featured);
+			})();
+		} catch (error) {
+			console.log(error);
+		}
 	}, [setFeatures]);
 
 	return (

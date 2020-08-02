@@ -11,13 +11,17 @@ export const PopularAroundYou = () => {
 	const { populars, setPopulars } = useContext(FeaturedContext);
 
 	useEffect(() => {
-		(async () => {
-			const url = "https://national-parks-reactjs.herokuapp.com/db";
-			const data = await fetch(url);
-			const json = await data.json();
+		try {
+			(async () => {
+				const url = "https://national-parks-reactjs.herokuapp.com/db";
+				const data = await fetch(url);
+				const json = await data.json();
 
-			setPopulars(json.carousel);
-		})();
+				setPopulars(json.carousel);
+			})();
+		} catch (error) {
+			console.log(error);
+		}
 	}, [setPopulars]);
 
 	const settings = {
